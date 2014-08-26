@@ -1,0 +1,46 @@
+* {
+	font-family: "century gothic", "微軟正黑體";
+}
+
+header {
+
+ 	position: absolute;
+	top: 0%;
+	height: 15%;
+	width: 99%;
+	background-color: #AA9988;
+
+}
+
+h1 {
+	position: relative;
+	left: 10%;
+	width: 50%;
+}
+
+div#main {
+
+	position: absolute;
+	top: 30%;
+	width: 20%;
+	left: 20%;
+}
+
+div.item {
+
+	position: relative;
+	border: 1px black solid;
+
+}
+
+div.idClass {
+	position: relative;
+
+}
+
+div.butten {
+
+	float: right;
+
+}
+
