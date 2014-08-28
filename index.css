@@ -18,12 +18,17 @@ h1 {
 	width: 50%;
 }
 
-div#main {
+div#classTable {
 
 	position: absolute;
 	top: 30%;
 	width: 20%;
 	left: 20%;
+}
+
+div.classTable{
+
+	margin-bottom: 20px;
 }
 
 div.item {

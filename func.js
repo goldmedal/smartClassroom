@@ -1,9 +1,9 @@
-function turnOnOff(_id)
+function turnOnOff(_classId, _blueId)
 {
 	$.ajax({
 
 		url: 'cgi-bin/turnOnOff.py',
-		data: { id: _id },
+		data: { classId : _classId, blueId : _blueId },
 		type: "POST",
 		datatype: "json",
 		success: function(data){
