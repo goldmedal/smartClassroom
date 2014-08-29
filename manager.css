@@ -84,6 +84,13 @@ span.Edit {
 
 }
 
+span.Edit:hover {
+
+	cursor: pointer;
+	text-decoration: underline;
+
+}
+
 #mask {
 
 	z-index: 2;
