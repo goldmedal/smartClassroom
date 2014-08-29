@@ -99,6 +99,7 @@ span.Edit {
 #mask {
 
 	cursor: pointer;
+	display: none;
 
 }
 
@@ -113,6 +114,7 @@ span.Edit {
 	left: 30%;
 	padding: 20px;
 	border-radius: 20px;
+	display: none;	
 }
 
 #editPanel div {
