@@ -1,16 +1,16 @@
-function turnOnOff(_classId, _blueId)
+function turnOnOff(_classID, _blueID)
 {
 	$.ajax({
 
 		url: 'cgi-bin/turnOnOff.py',
-		data: { classId : _classId, blueId : _blueId },
+		data: { classID : _classID, blueID : _blueID },
 		type: "POST",
 		datatype: "json",
 		success: function(data){
 			alert("success!");
 		},
 		error: function(xhr){
-			alert("xhr.status");
+			alert(xhr.status);
 		}
 
 	});
@@ -47,3 +47,4 @@ function checkSet(_id)
 
 	return checkCurrent;
 }
+

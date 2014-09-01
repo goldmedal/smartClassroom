@@ -61,6 +61,8 @@ div.item {
 }
 
 div.idClass {
+
+	width: 60%;
 	position: relative;
 
 }
@@ -68,5 +70,12 @@ div.idClass {
 div.butten {
 
 	float: right;
+
+}
+
+div.butten:hover {
+
+	cursor: pointer;
+	text-decoration: underline;
 
 }
