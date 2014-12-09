@@ -1,11 +1,14 @@
+#!/usr/bin/python
+
 import bluetooth
 import cgi , cgitb
 import MySQLdb
 
 form = cgi.FieldStorage()
-classID = form.getvalue('classID')
-deviceID = form.getvalue('blueID')
-
+#classID = str(form.getvalue('classID'))
+classID = "CIALlab"
+deviceID = str(form.getvalue('blueID'))
+print "%s %s" % ( classID, deviceID)
 
 db = MySQLdb.connect(host="localhost", user="root", passwd="1234", db="smart_classroom")
 cursor = db.cursor()
