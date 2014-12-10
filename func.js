@@ -30,7 +30,7 @@ function checkSet(_id)
 			datatype: "json",
 			success: function(data){
 
-				if( (data.state ^ _state) != _state ){
+				if((data.state ^ _state)){
 					if(_state == 0) $('#butten_'+_id).html("Off");
 					else $('#butten_'+_id).html("On");
 				}
