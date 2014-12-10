@@ -57,7 +57,7 @@
 			else echo "Open";
 		?>
 		</span>
-		<span class="edit tb_cell" onclick='<? echo "open_edit($bid, $btNum, $sockNum, $name, $open)"; ?>'>Edit</span>
+		<span class="edit tb_cell" onclick='<? echo "open_edit($bid, $btNum, $sockNum,'$name', $open)"; ?>'>Edit</span>
 	</div>
 
 <? } ?>

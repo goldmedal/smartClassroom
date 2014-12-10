@@ -1,0 +1,56 @@
+<html>
+<head>
+	<link href="index.css" rel="stylesheet" />
+	<script src="http://code.jquery.com/jquery-2.1.0.min.js"></script>
+	<script src="http://code.jquery.com/jquery-migrate-1.2.1.js"></script>
+	<script src="func.js"></script>
+	<script>
+		$(document).ready(function(){
+			// var socket_1 = checkSet(1);
+		// 	var socket_2 = checkSet(2);
+	//		var socket_3 = checkSet(3);
+			$("#butten_1").click(function(){turnOnOff(1);});
+			$("#butten_2").click(function(){turnOnOff(2);});
+			$("#butten_3").click(function(){turnOnOff(3);});
+		});	
+	</script>
+</head>
+<body>
+	<header>
+		<div id="manager">Manager</div>
+		<h1>Smart Classroom System</h1>
+	</header>
+	<div id="classTable">
+		<div class='classTable' id="lab1">
+			<div class="title"><b>1</b></div>
+				<div class="Table">
+					<div class="item">
+						<div class="butten" id="butten_1">On</div>
+						<div class="idClass">
+							<img src="light.jpg" style="height:35px;width:35px;">
+							Socket 1
+						</div>
+
+					</div>
+					<div class="item">
+						<div class="butten" id="butten_2">On</div>
+						<div class="idClass">
+							<img src="ele.jpg" style="height:35px;width:35px;">
+							Socket 2
+						</div>
+					</div>
+					<div class="item">
+						<div class="butten" id="butten_3">On</div>
+						<div class="idClass">
+							<img src="ele.jpg" style="height:35px;width:35px;">
+							Socket 3
+						</div>
+					</div>	
+				</div>			
+		</div>
+	</div>
+
+	
+</body>
+
+</html>
