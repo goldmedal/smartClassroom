@@ -29,9 +29,12 @@ sock = bluetooth.BluetoothSocket ( bluetooth.RFCOMM )
 sock.connect ((bd_addr, port))
 
 state = ~state
+ 
+# meg format :  num state
+# 				01  1
 
-if state == 0 :
-	meg = switchNum
+if state == 0 :  
+	meg = switchNum 
 else :
 	meg = switchNum | 4
 
