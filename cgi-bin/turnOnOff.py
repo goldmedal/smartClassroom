@@ -7,13 +7,12 @@ import MySQLdb
 form = cgi.FieldStorage()
 #classID = str(form.getvalue('classID'))
 classID = "CIALlab"
-deviceID = str(form.getvalue('blueID'))
-print "%s %s" % ( classID, deviceID)
+deviceID = str(form.getvalue('id'))
 
 db = MySQLdb.connect(host="localhost", user="root", passwd="1234", db="smart_classroom")
 cursor = db.cursor()
 
-sql = "SELECT * FROM `" + classID + "Equip` WHERE `name` = '" + deviceID + "'"
+sql = "SELECT * FROM `" + classID + "Equip` WHERE `id` = '" + deviceID + "'"
 cursor.execute(sql)
 
 result = cursor.fetchall()
@@ -39,5 +38,11 @@ else :
 	meg = switchNum | 4
 
 sock.send(meg)
-
 sock.close
+
+# write back to data base
+
+sql = "UPDATE `" + classID + "Equip` SET `status` = '"+ state +"' WHERE `id` = '" + deviceID + "'"
+cursor.execute(sql)
+
+print "%s" % state

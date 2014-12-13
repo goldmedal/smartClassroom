@@ -1,21 +1,47 @@
-<?
-
-	include("connect.php");
-
-?>
-
 <html>
 <head>
 	<link href="manager.css" rel="stylesheet" />
 
 	<script src="http://code.jquery.com/jquery-2.1.0.min.js"></script>
 	<script src="http://code.jquery.com/jquery-migrate-1.2.1.js"></script>
+	<script type="text/javascript" src="jquery.ddslick.js"></script>
 	<script src="manager.js"></script>
+	<script type="text/javascript">
+	$(function(){
+		// 下拉選單的資料來源
+		var ddData = [
+			{
+				text: '冷氣',
+				value: 1,
+				description: '',
+				imageSrc: 'air.jpg'
+			},
+			{
+				text: '插頭',
+				value: 2,
+				description: '',
+				imageSrc: 'ele.jpg'
+			},
+			{
+				text: '開關',
+				value: 3,
+				description: '',
+				imageSrc: 'light.jpg'
+			},
+		];
+ 
+		// 把 #myDropdown 轉換成 ddslick 下拉選單
+		$('.myDropdown').ddslick({
+			data: ddData,
+			width: 100,
+2
+			selectText: '請選擇'
+		});
+	});
+</script>
 	<script>
 		$(document).ready(function () {
-
 			$("#mask").click(hide_panel);
-
 		});
 	</script>
 </head>
@@ -27,40 +53,43 @@
 
 <div id="equipTable">
 	<div class="item">
-		<span class="btNum  tb_cell">Bluetooth Number</span>
+		<span class="btNum  tb_cell">Bluetooth Group</span>
 		<span class="sockNum  tb_cell">Socket Number</span>
 		<span class="name  tb_cell">Equip Name</span>
+		<span class="type  tb_cell">Equip Type</span>
 		<span class="open  tb_cell">Open</span>
-		<span class="tb_cell"></span>
+		<span class="  tb_cell"></span>
 	</div>
+
 <?
+	require_once("connect.php");
 
 	$equipSQL = "SELECT * FROM `CIALlabEquip`";
 	$equipQuery = mysql_query($equipSQL);
 	while( ($equipResult = mysql_fetch_assoc($equipQuery)) != FALSE ) {
 
-		$bid = $equipResult['id'];
-		$btNum = $equipResult['btNum'];
-		$sockNum = $equipResult['sockNum'];
+		$equipId = $equipResult['id'];
+		$group = $equipResult['group'];
+		$gNum = $equipResult['g_Num'];
 		$name = $equipResult['name'];
 		$open = $equipResult['open'];
 
 ?>	
 
+
 	<div class="item">
-		<span class="btNum tb_cell"><? echo $btNum; ?></span>
-		<span class="sockNum tb_cell"><? echo $sockNum; ?></span>
-		<span class="name tb_cell"><? echo $name; ?></span>
+		<span class="btNum tb_cell"><?echo $group;?></span>
+		<span class="sockNum tb_cell"><?echo $g_Num;?></span>
+		<span class="name tb_cell"><? echo $name;?></span>
+		<span class="type  tb_cell"><div class="myDropdown" id="num1"></div></span>
 		<span class="open tb_cell">
 		<? 
 			if ($open == 0) echo "Close";
 			else echo "Open";
 		?>
 		</span>
-		<span class="edit tb_cell" onclick='<? echo "open_edit($bid, $btNum, $sockNum,'$name', $open)"; ?>'>Edit</span>
-	</div>
-
-<? } ?>
+		<span class="edit tb_cell">Edit</span>
+	</div>		
 </div>
 
 <div id="mask">	

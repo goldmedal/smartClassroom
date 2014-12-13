@@ -7,16 +7,18 @@ header {
  	position: absolute;
 	top: 0%;
 	height: 15%;
-	width: 99%;
+	width: 100%;
 	background-color: #AA9988;
 
 }
 
 h1 {
 	position: relative;
-	left: 10%;
+	left: 5%;
 	width: 50%;
+	font-size:48px;
 }
+
 
 
 div#manager {
@@ -43,20 +45,33 @@ div#manager:hover {
 div#classTable {
 
 	position: absolute;
-	top: 30%;
-	width: 40%;
-	left: 20%;
+	top: 20%;
+	width: 25%;
+	left: 2%;
+	font-size: 28px;
 }
+
 
 div.classTable{
 
-	margin-bottom: 20px;
+	margin-bottom: 10px;
+}
+
+div.Table{
+	border: 2px #737D8C solid;
+	height:500px;
+	overflow: auto;
 }
 
 div.item {
 
 	position: relative;
-	border: 1px black solid;
+	height:40px;
+	border: 2px white groove;
+	background-color: #E7E8E9;
+	margin-left: 3px;
+	margin-top: 2px;
+	margin-right: 2px;
 
 }
 
@@ -64,14 +79,15 @@ div.idClass {
 
 	width: 60%;
 	position: relative;
+	text-align: left;
 
 }
 
 div.butten {
 
 	float: right;
-	width: 10%;
-	height: 100%;
+	margin-top:4px;
+
 }
 
 div.butten:hover {
@@ -79,18 +95,4 @@ div.butten:hover {
 	cursor: pointer;
 	text-decoration: underline;
 
-}
-
-div.check {
-
-	float: right;
-	width: 10%;
-	height: 100%;
-
-}
-
-div.check:hover {
-
-	cursor: pointer;
-	text-decoration: underline;
 }

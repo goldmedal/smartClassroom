@@ -69,8 +69,13 @@ span.sockNum {
 
 span.name {
 
-	width: 10%;
+	width: 5%;
 
+}
+
+span.type {
+
+	width: 5%;
 }
 
 span.open {
