@@ -1,13 +1,13 @@
 #!/usr/bin/python
+#
+# Send switch num and get the state
 
 import bluetooth
 import cgi , cgitb
 import MySQLdb
 
-form = cgi.FieldStorage()
-#classID = str(form.getvalue('classID'))
-classID = "CIALlab"
-deviceID = str(form.getvalue('id'))
+classID = "CIAlab"
+sensorID = form.getvalue('id')
 
 db = MySQLdb.connect(host="localhost", user="root", passwd="1234", db="smart_classroom")
 cursor = db.cursor()
@@ -27,18 +27,23 @@ port = 1
 sock = bluetooth.BluetoothSocket ( bluetooth.RFCOMM )
 sock.connect ((bd_addr, port))
 
-state = ~state
- 
-# meg format :  num state
-# 				01  1
+if switchNum == 1 :
+	sock.send('a')
+elif switchNum == 2 :
+	sock.send('s')
+elif switchNum == 3:
+	sock.send('d')
 
-if state == 0 :  
-	meg = switchNum 
+time.sleep(1)
+data = sock.recv(100)
+data = sock.recv(100)
+
+sock.close()
+
+if data > 20 :
+	state = 1
 else :
-	meg = switchNum | 4
-
-sock.send(meg)
-sock.close
+	state = 0
 
 # write back to data base
 

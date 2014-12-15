@@ -1,75 +1,51 @@
-var _path;
-function turnOnOff(_classID, _blueID)
-{
+function OnOff(_id){
+	$.ajax({
 
-//	var _path = 'turnOn.py';
-	var _state = 0;
-	function OnOff(){
-		$.ajax({
-
-			url: '../cgi-bin/'+_path,
-			data: { classID : _classID, blueID : _blueID },
-			type: "POST",
-			datatype: "html",
-			success: function(data){
-				
-				if($('#butten_'+_classID).html() == "On") {
-					$('#butten_'+_classID).html('Off');
-					_path = 'turnOn.py';
-					_state = 1;
-				}else{
-					_state = 0;
-					$('#butten_'+_classID).html('On');
-					_path = 'turnOff.py';
-				}
-			},
-			error: function(xhr){
-				alert(xhr.status);
+		url: '../cgi-bin/'+_path,
+		data: { id : _id},
+		type: "POST",
+		datatype: "html",
+		success: function(data){
+			
+			if(state == 1){
+				 $('#butten_'+_id).html("On");
 			}
+			else { 
+				$('#butten_'+_id).html("Off");
+			}
+		},
+		error: function(xhr){
+			alert(xhr.status);
+		}
 
-		});
-	}
-	return OnOff;
-
+	});
 }
 
-function checkSet(_id)
-{
-	var _state = 0;
-	function checkCurrent(){
 
-		$.ajax({
+function checkCurrent(_id){
 
-			url: '../cgi-bin/rev.py',
-			data: { id: _id },
-			type: "POST",
-			datatype: "html",
-			success: function(data){
-				alert("check success!");
-				if(data > 20){
-					 $('#butten_'+_id).html("On");
-					_path = "turnOff.py";
-				}
-				else { 
-					$('#butten_'+_id).html("Off");
-					_path = "turnOn.py";
-				}
+	$.ajax({
 
-/*				if( (data.state ^ _state) != _state ){
-					if(_state == 0) $('#butten_'+_id).html("Off");
-					else $('#butten_'+_id).html("On");
-				}
-*/
-			},
+		url: '../cgi-bin/rev.py',
+		data: { id: _id },
+		type: "POST",
+		datatype: "html",
+		success: function(data){
 
-			error: function(xhr){
-				alert(xhr.status);
+			alert("check success!");
+			if(state == 1){
+				 $('#butten_'+_id).html("On");
+			}
+			else { 
+				$('#butten_'+_id).html("Off");
 			}
 
-		});
+		},
 
-	}
+		error: function(xhr){
+			alert(xhr.status);
+		}
 
-	return checkCurrent;
+	});
+
 }
-
