@@ -64,13 +64,13 @@
 <?
 	require_once("connect.php");
 
-	$equipSQL = "SELECT * FROM `CIALlabEquip`";
-	$equipQuery = mysql_query($equipSQL);
+	$equipSQL = "SELECT * FROM `CIAlabEquip`";
+	$equipQuery = mysql_query($equipSQL) or die(mysql_error());
 	while( ($equipResult = mysql_fetch_assoc($equipQuery)) != FALSE ) {
 
 		$equipId = $equipResult['id'];
 		$group = $equipResult['group'];
-		$gNum = $equipResult['g_Num'];
+		$gNum = $equipResult['g_num'];
 		$name = $equipResult['name'];
 		$open = $equipResult['open'];
 
@@ -79,7 +79,7 @@
 
 	<div class="item">
 		<span class="btNum tb_cell"><?echo $group;?></span>
-		<span class="sockNum tb_cell"><?echo $g_Num;?></span>
+		<span class="sockNum tb_cell"><?echo $gNum;?></span>
 		<span class="name tb_cell"><? echo $name;?></span>
 		<span class="type  tb_cell"><div class="myDropdown" id="num1"></div></span>
 		<span class="open tb_cell">
@@ -90,6 +90,9 @@
 		</span>
 		<span class="edit tb_cell">Edit</span>
 	</div>		
+<?
+	}
+?>
 </div>
 
 <div id="mask">	
