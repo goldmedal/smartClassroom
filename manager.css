@@ -22,23 +22,24 @@ h1 {
 
 div#equipTable {
 
-	position: absolute;
+	position: relative;
 	top: 30%;
 	width: 75%;
 	left: 10%;
 	display: table;
-	border-collapse: collapse
+	border-collapse: collapse;
 
 }
 
-div#equipTable {
+div#btTable {
 
-	position: absolute;
-	top: 60%;
+	position: relative;
+	top: 40%;
 	width: 75%;
 	left: 10%;
 	display: table;
-	border-collapse: collapse
+	border-collapse: collapse;
+	margin-bottom: 5%;
 
 }
 
