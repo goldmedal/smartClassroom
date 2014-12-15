@@ -42,12 +42,17 @@
 	<script>
 		$(document).ready(function () {
 			$("#mask").click(hide_panel);
+			$('#back').click(function() {
+				location.href = "index.php";
+			});			
 		});
+
 	</script>
 </head>
 <body>
 
 <header>
+	<div id="back">Back To List</div>	
 	<h1>Manager UI</h1>
 </header>
 
@@ -102,7 +107,6 @@
 	</div>
 
 <?
-	require_once("connect.php");
 
 	$equipSQL = "SELECT * FROM `btDevice`";
 	$equipQuery = mysql_query($equipSQL) or die(mysql_error());

@@ -14,6 +14,27 @@ header {
 
 }
 
+div#back {
+
+	position: relative;
+	float: right;
+	width: 100px;
+	height: 20px;
+	border-radius: 10px;
+	background-color: #DDDDAA;
+	padding: 5px;
+	text-align: center;
+	right: 2.5%;
+	top: 50%;
+}
+
+div#back:hover {
+
+	cursor: pointer;
+	background-color: #AADDDD;
+
+}
+
 h1 {
 	position: relative;
 	left: 10%;
