@@ -18,9 +18,9 @@ cursor.execute(sql)
 result = cursor.fetchall()
 
 for record in result :
-	bd_addr = record[2]
-	state = record[3]
-	switchNum = record[4]
+	bd_addr = record[4]
+	state = record[5]
+	switchNum = record[2]
 
 port = 1
 

@@ -95,6 +95,35 @@
 ?>
 </div>
 
+<div id="btTable">
+	<div class="item">
+		<span class="btNum  tb_cell">Bluetooth Number</span>
+		<span class="macAddress  tb_cell">Mac Address</span>
+	</div>
+
+<?
+	require_once("connect.php");
+
+	$equipSQL = "SELECT * FROM `btDevice`";
+	$equipQuery = mysql_query($equipSQL) or die(mysql_error());
+	while( ($equipResult = mysql_fetch_assoc($equipQuery)) != FALSE ) {
+
+		$btId = $equipResult['id'];
+		$MacAddress = $equipResult['MacAddress'];
+
+?>	
+
+
+	<div class="item">
+		<span class="btNum tb_cell"><?echo $btId;?></span>
+		<span class="macAddress tb_cell"><?echo $MacAddress;?></span>
+	</div>		
+<?
+	}
+?>
+</div>
+
+
 <div id="mask">	
 </div>
 
