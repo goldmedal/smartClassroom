@@ -59,14 +59,12 @@ div.classTable{
 
 div.Table{
 	border: 2px #737D8C solid;
-	height:500px;
 	overflow: auto;
 }
 
 div.item {
 
 	position: relative;
-	height:40px;
 	border: 2px white groove;
 	background-color: #E7E8E9;
 	margin-left: 3px;
@@ -82,12 +80,25 @@ div.idClass {
 	text-align: left;
 
 }
+div.check {
 
+	float: right;
+	margin-top: 4px;
+
+}
+
+
+div.check:hover {
+
+	cursor: pointer;
+	text-decoration: underline;
+
+}
 div.butten {
 
 	float: right;
 	margin-top:4px;
-
+	padding-right: 10px;
 }
 
 div.butten:hover {
