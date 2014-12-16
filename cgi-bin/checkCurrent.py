@@ -1,4 +1,6 @@
 #!/usr/bin/python
+#
+# Send switch num and get the state
 
 print "Content-Type: text/html"
 print
@@ -8,7 +10,6 @@ import cgi , cgitb
 import MySQLdb
 
 form = cgi.FieldStorage()
-#classID = str(form.getvalue('classID'))
 classID = "CIAlab"
 deviceID = str(form.getvalue('id'))
 
@@ -17,6 +18,7 @@ cursor = db.cursor()
 
 sql = "SELECT * FROM `" + classID + "Equip` WHERE `id` = '" + deviceID + "'"
 cursor.execute(sql)
+
 result = cursor.fetchall()
 
 for record in result :
@@ -28,23 +30,24 @@ port = 1
 
 sock = bluetooth.BluetoothSocket ( bluetooth.RFCOMM )
 sock.connect ((bd_addr, port))
-if state == 1:
+if switchNum == 1 :
+	sock.send('a')
+elif switchNum == 2 :
+	sock.send('s')
+elif switchNum == 3:
+	sock.send('d')
+
+data = sock.recv(100)
+data = sock.recv(100)
+
+sock.close()
+
+if float(data) > 28.0:
 	state = 0
 else :
 	state = 1
-
-# meg format :  num state
-# 				01  1
-
-if state == 0 :  
-	meg = switchNum 
-else :
-	meg = switchNum | 4
-sock.send(str(meg))
-sock.close
-
 # write back to data base
-sql = "UPDATE `" + classID + "Equip` SET `status` = '" + str(state) + "' WHERE `id` = '" + deviceID + "'"
+sql = "UPDATE `" + classID + "Equip` SET `status` = '"+ str(state) +"' WHERE `id` = '" + deviceID + "'"
 cursor.execute(sql)
 db.commit()
 print "%s" % state

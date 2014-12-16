@@ -1,16 +1,17 @@
 function OnOff(_id){
 	$.ajax({
 
-		url: '../cgi-bin/'+_path,
+		url: '../cgi-bin/turnOnOff.py',
 		data: { id : _id},
 		type: "POST",
 		datatype: "html",
 		success: function(data){
-			
-			if(state == 1){
+
+			alert(data);			
+			if(data == 0){
 				 $('#butten_'+_id).html("On");
 			}
-			else { 
+			else if(data ==1){ 
 				$('#butten_'+_id).html("Off");
 			}
 		},
@@ -26,17 +27,17 @@ function checkCurrent(_id){
 
 	$.ajax({
 
-		url: '../cgi-bin/rev.py',
+		url: '../cgi-bin/checkCurrent.py',
 		data: { id: _id },
 		type: "POST",
 		datatype: "html",
 		success: function(data){
 
-			alert("check success!");
-			if(state == 1){
+			alert(data);
+			if(data == 0){
 				 $('#butten_'+_id).html("On");
 			}
-			else { 
+			else if(data == 1){ 
 				$('#butten_'+_id).html("Off");
 			}
 
@@ -49,3 +50,22 @@ function checkCurrent(_id){
 	});
 
 }
+
+function irsend(){
+	$.ajax({
+
+		url: '../cgi-bin/irsend.py',
+		data: {},
+		type: "POST",
+		datatype: "html",
+		success: function(data){
+			alert('Send!');
+		},
+		error: function(xhr){
+			alert(xhr.status);
+		}
+
+	});
+}
+
+
