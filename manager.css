@@ -1,5 +1,6 @@
-* {
-	font-family: "century gothic", "微軟正黑體";
+body {
+	font-family: "Trebuchet MS", "Helvetica", "Arial",  "Verdana", "sans-serif";
+	font-size: 62.5%;
 }
 
 header {
@@ -7,60 +8,34 @@ header {
  	position: absolute;
 	top: 0%;
 	left: 0%;
-
 	height: 15%;
 	width: 99%;
 	background-color: #AA9988;
 
 }
 
-div#back {
-
-	position: relative;
-	float: right;
-	width: 100px;
-	height: 20px;
-	border-radius: 10px;
-	background-color: #DDDDAA;
-	padding: 5px;
-	text-align: center;
-	right: 2.5%;
-	top: 50%;
-}
-
-div#back:hover {
-
-	cursor: pointer;
-	background-color: #AADDDD;
-
-}
-
 h1 {
 	position: relative;
-	left: 10%;
+	margin-left: 5%;
 	width: 50%;
+	font-size: 50px;
 }
+
+
 
 div#equipTable {
 
-	position: relative;
-	top: 30%;
-	width: 75%;
-	left: 10%;
-	display: table;
-	border-collapse: collapse;
-
+	position: absolute;
+	top: 22%;
+	left: 6%;
 }
 
-div#btTable {
+div#bluetooth_table{
+	position: fixed;
+	left: 950px;
+	top:210px;
+	width:260px;
 
-	position: relative;
-	top: 40%;
-	width: 75%;
-	left: 10%;
-	display: table;
-	border-collapse: collapse;
-	margin-bottom: 5%;
 
 }
 
@@ -122,12 +97,6 @@ span.Edit {
 
 }
 
-span.macAddress {
-
-	width: 5%;
-
-}
-
 span.Edit:hover {
 
 	cursor: pointer;
@@ -185,5 +154,74 @@ span.Edit:hover {
 
 	cursor: pointer;
 	text-decoration: underline;
+
+}
+
+label, input { 
+	display:block; 
+}
+
+input.text { 
+	margin-bottom:12px;
+ 	width:95%; padding: .4em;
+}
+
+fieldset { 
+	padding:0;
+ 	border:0; 
+ 	margin-top:25px;
+}
+
+
+
+div#users-contain { 
+	width: 350px;
+	margin: 20px 0;
+}
+
+div#users-contain table {
+	 margin: 1em 0;
+	 border-collapse: collapse;
+	 width: 100%; 
+}
+
+div#users-contain table td, div#users-contain table th { 
+	border: 1px solid #eee; 
+	padding: .6em 10px; 
+	text-align: left; 
+}
+
+.ui-dialog .ui-state-error { 
+	padding: .3em; 
+}
+		
+.validateTips { 
+	border: 1px solid transparent; 
+	padding: 0.3em; 
+}
+
+.kk{
+	margin-left: 2px;
+}
+
+#bluetext{
+	position: absolute;
+	width: 170px;
+	height: 26px;
+	font-size: 14px;
+	top:30px;
+}
+
+#add_blue{
+	position: absolute;
+	margin-left: 190px;
+	top: 30px;
+
+}
+
+#dele_blue{
+	position: absolute;
+	bottom: -50px;
+
 
 }

@@ -1,3 +1,5 @@
+
+
 (function ($) {
 
     $.fn.ddslick = function (method) {
