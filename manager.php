@@ -9,6 +9,17 @@
 	<script type="text/javascript" src="jquery.ddslick.js"></script>
 	<script src="manager.js"></script>
   <script src="manager_new_device.js"></script>
+  <script>
+  $(document).ready(function() {
+
+    $('#back').click(function() {
+
+       location.href = "index.php"; 
+       
+    });
+
+  });
+  </script>
 </head>
 <body>
 
@@ -116,8 +127,6 @@
  <!-- Bluetooth Device Table    -->
 
 
-
-
 <div id="bluetooth_table">
   <b>Bluetooth Number:</b><br>
   <input type="text" id="bluetext" value="input bluetooth number">
@@ -135,7 +144,7 @@
     $MacAddress = $equipResult['MacAddress'];
     echo "<li>".$MacAddress."<input type='checkbox' name='del' /></li>";
 
-  }
+  } 
 ?>    
   </ol>
 </div>
