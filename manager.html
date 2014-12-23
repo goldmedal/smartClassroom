@@ -8,165 +8,11 @@
   <script src="jquery-ui.js"></script>
 	<script type="text/javascript" src="jquery.ddslick.js"></script>
 	<script src="manager.js"></script>
-  <style>
-    body { font-size: 62.5%; }
-    label, input { display:block; }
-    input.text { margin-bottom:12px; width:95%; padding: .4em; }
-    fieldset { padding:0; border:0; margin-top:25px; }
-    h2 { font-size: 1.2em; margin: .6em 0; }
-    div#users-contain { width: 800px; margin: 20px 0; }
-    div#users-contain table { margin: 1em 0; border-collapse: collapse; width: 100%; }
-    div#users-contain table td, div#users-contain table th { border: 1px solid #eee; padding: .6em 10px; text-align: left; }
-    .ui-dialog .ui-state-error { padding: .3em; }
-    .validateTips { border: 1px solid transparent; padding: 0.3em; }
-  </style>
+  <script src="manager_new_device.js"></script>
 
-	<!--<script type="text/javascript">
-	$(function(){
-		// 下拉選單的資料來源
-		var ddData = [
-			{
-				text: '冷氣',
-				value: 1,
-				description: '',
-				imageSrc: 'air.jpg'
-			},
-			{
-				text: '插頭',
-				value: 2,
-				description: '',
-				imageSrc: 'ele.jpg'
-			},
-			{
-				text: '開關',
-				value: 3,
-				description: '',
-				imageSrc: 'light.jpg'
-			},
-		];
- 
-		// 把 #myDropdown 轉換成 ddslick 下拉選單
-		$('.myDropdown').ddslick({
-			data: ddData,
-			width: 100,
-
-			selectText: '請選擇'
-		});
-	});
-</script>-->
 
   <script>
 
-  $(function() {  //新增equipment function
-    var dialog, form,
-
-      emailRegex = /^[a-zA-Z0-9.!#$%&'*+\/=?^_`{|}~-]+@[a-zA-Z0-9](?:[a-zA-Z0-9-]{0,61}[a-zA-Z0-9])?(?:\.[a-zA-Z0-9](?:[a-zA-Z0-9-]{0,61}[a-zA-Z0-9])?)*$/,
-      equip_name = $( "#equip_name" ),
-      equip_type = $( "#equip_type" ),
-      socket_num = $( "#socket_num" ),
-      show = $( "#show" ),
-      bluetooth_num = $( "#bluetooth_num" ),
-      allFields = $( [] ).add( equip_name ).add( equip_type ).add( bluetooth_num ).add( socket_num ).add( show ),
-      tips = $( ".validateTips" );
- 
-    function updateTips( t ) {
-      tips
-        .text( t )
-        .addClass( "ui-state-highlight" );
-      setTimeout(function() {
-        tips.removeClass( "ui-state-highlight", 1500 );
-      }, 500 );
-    }
- 
-    function checkLength( o, n, min, max ) {
-      if ( o.val().length > max || o.val().length < min ) {
-        o.addClass( "ui-state-error" );
-        updateTips( "Length of " + n + " must be between " +
-          min + " and " + max + "." );
-        return false;
-      } else {
-        return true;
-      }
-    }
- 
-    function checkRegexp( o, regexp, n ) {
-      if ( !( regexp.test( o.val() ) ) ) {
-        o.addClass( "ui-state-error" );
-        updateTips( n );
-        return false;
-      } else {
-        return true;
-      }
-    }
-
- 
-    function addUser() {
-      var valid = true;
-      allFields.removeClass( "ui-state-error" );
- 
-      valid = valid && checkLength( equip_name, "equip_name", 1, 18 );
-      valid = valid && checkLength( equip_type, "equip_type", 1, 13 );
-      valid = valid && checkLength( bluetooth_num, "bluetooth_num", 1, 5 );
-      valid = valid && checkLength( socket_num, "socket_num", 1, 5 );
-      //valid = valid && checkLength( show, "show", 0, 4 );
- 
-      /*valid = valid && checkRegexp( name, /^[a-z]([0-9a-z_\s])+$/i, "Username may consist of a-z, 0-9, underscores, spaces and must begin with a letter." );
-      valid = valid && checkRegexp( email, emailRegex, "eg. ui@jquery.com" );
-      valid = valid && checkRegexp( password, /^([0-9a-zA-Z])+$/, "Password field only allow : a-z 0-9" );*/
- 
-      if ( valid ) {
-        $( "#users tbody" ).append( "<tr class='row' id='row'>" +
-          "<td>" + equip_name.val() + "</td>" +
-          "<td>" + equip_type.val() + "</td>" +
-          "<td>" + bluetooth_num.val() + "</td>" +
-          "<td>" + socket_num.val() + "</td>" +
-          "<td>" + $('input[name=show]:checked').val() + "</td>" +
-          "<td>" + "<input type='checkbox' name='del' />" + "</td>" +
-        "</tr>" );
-        dialog.dialog( "close" );
-      }
-      return valid;
-    }
- 
-    dialog = $( "#dialog-form" ).dialog({
-      autoOpen: false,
-      height: 600,
-      width: 400,
-      modal: true,
-      buttons: {
-        "Create an equipment": addUser,
-        Cancel: function() {
-          dialog.dialog( "close" );
-        }
-      },
-      close: function() {
-        form[ 0 ].reset();
-        allFields.removeClass( "ui-state-error" );
-      }
-    });
- 
-    form = dialog.find( "form" ).on( "submit", function( event ) {
-      event.preventDefault();
-      addUser();
-    });
- 
-    $( "#create-user" ).button().on( "click", function() {
-      dialog.dialog( "open" );
-    });
-    $( "#dele" ).button().on( "click", function(){
-      var t=$("input:checked").closest("tr").remove();
-    });
-
-    $("#add_blue").button().on( "click", function(){
-      var msg=$("#bluetext").val();
-      $("ol").append("<li>"+ msg + "<input type='checkbox' name='del' />" + "</li>");
-    });
-
-    $( "#dele_blue" ).button().on( "click", function(){
-      var tb=$("input:checked").closest("li").remove();
-    });
-
-  });
 
   </script>
 
@@ -174,14 +20,14 @@
 <body>
 
 <header>
+  <div id="back">Back To List</div> 
 	<h1>Manager UI</h1>
 </header>
 
-
+<!--  new Device Dialog  -->
 
 <div id="dialog-form" title="Create new equipment">
 	<p class="validateTips">All form fields are required.</p>
-
 	<form name="table">
 		<fieldset>
 			<label for="equip_name">Equip Name</label>
@@ -203,31 +49,81 @@
 </div>
 
 
+
 <div id="equipTable">
+  <div id="users-contain" class="ui-widget">
+    <h2>Existing Devices:</h2>
+    <table id="users" class="ui-widget ui-widget-content">
+      <thead>
+        <tr class="ui-widget-header ">
+          <th>Equip Name</th>
+          <th>Equip Type</th>
+          <th>Bluetooth Number</th>
+          <th>Socket Number</th>
+          <th>Open</th>
+          <th><input type="button" id="dele" name="delete" value="delete" /></th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr></tr>
+<?
+  require_once("connect.php");
 
-<div id="users-contain" class="ui-widget">
-  <h2>Existing Users:</h2>
-  <table id="users" class="ui-widget ui-widget-content">
-    <thead>
-      <tr class="ui-widget-header ">
-        <th>Equip Name</th>
-        <th>Equip Type</th>
-        <th>Bluetooth Number</th>
-        <th>Socket Number</th>
-        <th>Show</th>
-        <th><input type="button" id="dele" name="delete" value="delete" /></th>
-      </tr>
-    </thead>
-    <tbody>
-      <tr>
+  $equipSQL = "SELECT * FROM `CIAlabEquip`";
+  $equipQuery = mysql_query($equipSQL) or die(mysql_error());
+  while( ($equipResult = mysql_fetch_assoc($equipQuery)) != FALSE ) {
 
-      </tr>
-    </tbody>
-  </table>
+    $equipId = $equipResult['id'];
+    $group = $equipResult['group'];
+    $gNum = $equipResult['g_num'];
+    $name = $equipResult['name'];
+    $open = $equipResult['open'];
+    $type = $equipResult['type'];
+
+?>          
+        <tr class='row' id='row'>
+          <td><?echo $name; ?></td>
+          <td>
+<?
+            switch ($type) {
+              case 1:
+                echo "插座";
+                break;
+
+              case 2:
+                echo "電器";
+                break;
+
+              case 3:
+                echo "紅外線";
+                break;
+
+              default:
+                # code...
+                break;
+            }
+?>
+          </td>
+          <td><? echo $group; ?></td>
+          <td><? echo $gNum; ?></td>
+          <td><? echo $open; ?></td>
+          <td> <input type='checkbox' name='del' /></td>
+        </tr>  
+<?
+   }
+?>              
+      </tbody>
+    </table>
+  </div>
+  <button id="create-user">Create new equipment</button>
+
 </div>
-<button id="create-user">Create new equipment</button>
 
-</div>
+
+ <!-- Bluetooth Device Table    -->
+
+
+
 
 <div id="bluetooth_table">
   <b>Bluetooth Number:</b><br>
@@ -236,6 +132,18 @@
   <button id="dele_blue" >delete selected bluetooth</button>
   <br><br>
   <ol>
+<?
+
+  $equipSQL = "SELECT * FROM `btDevice`";
+  $equipQuery = mysql_query($equipSQL) or die(mysql_error());
+  while( ($equipResult = mysql_fetch_assoc($equipQuery)) != FALSE ) {
+
+    $btId = $equipResult['id'];
+    $MacAddress = $equipResult['MacAddress'];
+    echo "<li>".$MacAddress."<input type='checkbox' name='del' /></li>";
+
+  }
+?>    
   </ol>
 </div>
 
