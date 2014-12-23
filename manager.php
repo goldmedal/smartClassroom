@@ -129,7 +129,7 @@
 
 <div id="bluetooth_table">
   <b>Bluetooth Number:</b><br>
-  <input type="text" id="bluetext" value="input bluetooth number">
+  <input type="text" id="bluetext" placeholder="input bluetooth number">
   <button id="add_blue" >add</button>
   <button id="dele_blue" >delete selected bluetooth</button>
   <br><br>

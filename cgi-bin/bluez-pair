@@ -3,6 +3,7 @@ print "Content-Type: text/html"
 print
 
 import gobject
+
 import MySQLdb
 import cgi, cgitb
 import sys
@@ -15,6 +16,7 @@ form = cgi.FieldStorage()
 devName = "hci0"
 macAddress = form.getvalue('mac')
 pinCode = form.getvalue('pin')
+
 
 class Rejected(dbus.DBusException):
 	_dbus_error_name = "org.bluez.Error.Rejected"
@@ -150,12 +152,10 @@ if __name__ == '__main__':
 #		print "Agent registered"
 
 	if macAddress :
-		print "111"
 		agent.set_exit_on_release(False)
 		adapter.CreatePairedDevice(macAddress, path, capability,
 					reply_handler=create_device_reply,
 					error_handler=create_device_error)
-		print "111"
 	else:
 		adapter.RegisterAgent(path, capability)
 		print "Agent registered"
