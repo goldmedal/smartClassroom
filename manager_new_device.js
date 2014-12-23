@@ -83,8 +83,28 @@
     });
 
     $("#add_blue").button().on( "click", function(){
-      var msg=$("#bluetext").val();
-      $("ol").append("<li>"+ msg + "<input type='checkbox' name='del' />" + "</li>");
+
+      var _mac = $("#bluetext").val();
+      $.ajax({
+
+        url: "../cgi-bin/bluez-pair",
+        data: { mac : _mac, pin : "1234"},
+        type: "POST",
+        datatype: "html",
+        success: function(data) {
+          if(data == "success") {
+             $("ol").append("<li>"+ msg + "<input type='checkbox' name='del' />" + "</li>");
+          }else {
+            alert("Add Fail!");
+          }
+        },
+        error: function(xhr) {
+            alert(xhr.status);
+        }
+
+      });
+    
+     
     });
 
     $( "#dele_blue" ).button().on( "click", function(){
