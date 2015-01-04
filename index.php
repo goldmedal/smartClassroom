@@ -34,8 +34,8 @@
 			$("#group<? echo $now_group;?>").append("\
 					<div class='Table'>\
 						<div class='item'>\
-							<div class='check' id='check_<?echo $quip_row['id'];?>'>Check</div>\
-							<div class='butten' id='butten_<?echo $quip_row['id'];?>'><?echo ($quip_row['status'] == 1)?"Off":"On";?></div>\
+							<div class='button check' id='check_<?echo $quip_row['id'];?>'>Check</div>\
+							<div class='button' id='butten_<?echo $quip_row['id'];?>'><?echo ($quip_row['status'] == 1)?"Off":"On";?></div>\
 							<div class='idClass'>\
 								<img src='<? echo $type_src; ?>' style='height:35px;width:35px;'>\
 								<? echo $quip_row['name']; ?>\
@@ -76,7 +76,7 @@
 			<div class='title'><b>Projector</b></div>
 			<div class='Table'>
 				<div class='item'>
-				<div class='check' id='Send'>Send</div>
+				<div class='button check' id='Send'>Send</div>
 				<div class='idClass'>Power</div>
 				</div>
 			</div>

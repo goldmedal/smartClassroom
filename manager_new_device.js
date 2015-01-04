@@ -92,6 +92,7 @@
         type: "POST",
         datatype: "html",
         success: function(data) {
+			alert(data);
           if(data == "success") {
              $("ol").append("<li>"+ msg + "<input type='checkbox' name='del' />" + "</li>");
           }else {
