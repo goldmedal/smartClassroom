@@ -123,9 +123,7 @@ if __name__ == '__main__':
 	if devName:
 		print devName
 		path = manager.FindAdapter(devName)
-		print "111"
 	else:
-		print "33"
 		path = manager.DefaultAdapter()
 	adapter = dbus.Interface(bus.get_object("org.bluez", path),
 							"org.bluez.Adapter")
