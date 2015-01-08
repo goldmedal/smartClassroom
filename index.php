@@ -1,6 +1,7 @@
 <html>
 <head>
 	<link href="index.css" rel="stylesheet" />
+	<link href="spinner.css" rel="stylesheet" />
 	<script src="http://code.jquery.com/jquery-2.1.0.min.js"></script>
 	<script src="http://code.jquery.com/jquery-migrate-1.2.1.js"></script>
 	<script src="func.js"></script>
@@ -34,8 +35,12 @@
 			$("#group<? echo $now_group;?>").append("\
 					<div class='Table'>\
 						<div class='item'>\
+<? if($quip_row['type'] != 3){  ?>
 							<div class='button check' id='check_<?echo $quip_row['id'];?>'>Check</div>\
 							<div class='button' id='butten_<?echo $quip_row['id'];?>'><?echo ($quip_row['status'] == 1)?"Off":"On";?></div>\
+<? }else{ ?>
+							<div class='button check' id='send_<?echo $quip_row['id'];?>'>Send</div>\
+<? } ?>
 							<div class='idClass'>\
 								<img src='<? echo $type_src; ?>' style='height:35px;width:35px;'>\
 								<? echo $quip_row['name']; ?>\
@@ -44,10 +49,15 @@
 					</div>\
 				");
 <?			
-
+		if($quip_row['type'] != 3){
 			echo "$('#butten_".$quip_row['id']."').click(function() { OnOff(".$quip_row['id']."); });";
 			echo "$('#check_".$quip_row['id']."').click(function() { checkCurrent(".$quip_row['id']."); });";
-	
+		}else{
+
+			echo "$('#send_".$quip_row['id']."').click(function() { irsend(".$quip_row['id']."); });";
+
+		}
+
 		}
 		
 ?>
@@ -60,7 +70,6 @@
 				location.href = "manager.php";
 			});
 
-			$('#Send').click(function() { irsend(); });
 		});	
 
 	</script>
@@ -72,17 +81,6 @@
 		<h1>Smart Classroom System</h1>
 	</header>
 	<div id="classTable">
-		<div class='classTable' id='projector'>
-			<div class='title'><b>Projector</b></div>
-			<div class='Table'>
-				<div class='item'>
-				<div class='button check' id='Send'>Send</div>
-				<div class='idClass'>Power</div>
-				</div>
-			</div>
-
-		</div>
-	
 	
 	</div>
 

@@ -16,15 +16,16 @@ deviceID = str(form.getvalue('id'))
 db = MySQLdb.connect(host="localhost", user="root", passwd="1234", db="smart_classroom")
 cursor = db.cursor()
 
-sql = "SELECT * FROM `" + classID + "Equip` WHERE `id` = '" + deviceID + "'"
+sql = "SELECT dev.group, dev.g_num, dev.status, bt.id, bt.MacAddress FROM " + classID + "Equip dev, btDevice bt WHERE dev.id = '" + deviceID + "'"
 cursor.execute(sql)
 
 result = cursor.fetchall()
 
 for record in result :
-	bd_addr = record[4]
-	state = record[5]
-	switchNum = record[2]
+	if record[0] == record[3] :
+		bd_addr = record[4]
+		state = record[2]
+		switchNum = record[1]
 
 port = 1
 

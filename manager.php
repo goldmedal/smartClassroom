@@ -4,6 +4,7 @@
 	<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
 	<script src="http://code.jquery.com/jquery-migrate-1.2.1.js"></script>
   <link rel="stylesheet" href="jquery-ui.css">
+  <link rel="stylesheet" href="spinner.css">
   <script src="jquery-ui.min.js"></script>
   <script src="jquery-ui.js"></script>
 	<script type="text/javascript" src="jquery.ddslick.js"></script>
@@ -31,21 +32,31 @@
 <!--  new Device Dialog  -->
 
 <div id="dialog-form" title="Create new equipment">
-	<p class="validateTips">All form fields are required.</p>
 	<form name="table">
 		<fieldset>
-			<label for="equip_name">Equip Name</label>
-			<input type="text" name="equip_name" id="equip_name" value="light" class="text ui-widget-content ui-corner-all">
-			<label for="equip_type">Equip Type</label>
-			<input type="text" name="equip_type" id="equip_type" value="1" class="text ui-widget-content ui-corner-all">
-			<label for="bluetooth_num">Bluetooth Number</label>
-			<input type="text" name="bluetooth_num" id="bluetooth_num" value="1" class="text ui-widget-content ui-corner-all">
-      <label for="socket_num">Socket Number</label>
-      <input type="text" name="socket_num" id="socket_num" value="1" class="text ui-widget-content ui-corner-all">
-      <label for="show">show</label>
-      yes<input type="radio" name="show" id="yes" value="Yes" class="kk" >
-      no<input type="radio" name="show" id="no"  value="No" class="kk" >
-
+			<div class='dia_item'>
+				<label for="equip_name">Equip Name: </label>
+				<input type="text" name="equip_name" id="equip_name" placeholder="Input equip name" class="text ui-widget-content ui-corner-all">
+			</div>
+			<div class='dia_item'>
+				<label for="equip_type">Equip Type: </label>
+				電器<input type="radio" name="equip_type" id="equip_type" value="1" class="kk" checked>
+				開關<input type="radio" name="equip_type" id="equip_type" value="2" class="kk">
+				紅外線<input type="radio" name="equip_type" id="equip_type" value="3" class="kk">
+			</div>
+			<div class='dia_item'>
+				<label for="bluetooth_num">Bluetooth Number: </label>
+				<input type="text" name="bluetooth_num" id="bluetooth_num" placeholder="Input bluetooth Number" class="text ui-widget-content ui-corner-all">
+			</div>
+			<div class='dia_item'>
+				 <label for="socket_num">Socket Number: </label>
+				<input type="text" name="socket_num" id="socket_num" placeholder="Input the number of socket" class="text ui-widget-content ui-corner-all">
+			</div>
+			<div class='dia_item'>
+			  <label for="show">Show: </label>
+		      Yes<input type="radio" name="show" id="show" value="1" class="kk" >
+			 No<input type="radio" name="show" id="show"  value="0" class="kk" checked>
+			</div>
 			<!-- Allow form submission with keyboard without duplicating the dialog button -->
 			<input type="submit" tabindex="-1" style="position:absolute; top:-1000px" >
 		</fieldset>
@@ -65,7 +76,8 @@
           <th>Bluetooth Number</th>
           <th>Socket Number</th>
           <th>Open</th>
-          <th><input type="button" id="dele" name="delete" value="delete" /></th>
+		  <th></th>
+		  <th></th>
         </tr>
       </thead>
       <tbody>
@@ -91,11 +103,11 @@
 <?
             switch ($type) {
               case 1:
-                echo "插座";
+                echo "電器";
                 break;
 
               case 2:
-                echo "電器";
+                echo "開關";
                 break;
 
               case 3:
@@ -110,9 +122,28 @@
           </td>
           <td><? echo $group; ?></td>
           <td><? echo $gNum; ?></td>
-          <td><? echo $open; ?></td>
-          <td> <input type='checkbox' name='del' /></td>
+          <td><? if($open) echo "Yes";
+				 else echo "No";
+		   ?></td>   
+	    <td><button class='dele_dev' id='dev_dele_<?echo $equipId;?>'>delete</button></td>
+<script>
+	$(document).ready(function() {
+		$('#dev_dele_<? echo $equipId;?>').click( function() {
+			delete_dev(<? echo $equipId; ?>);
+		}); 
+	});
+</script>
+		<td><button class='edit_dev' id='dev_edit_<?echo $equipId;?>'>Edit</button></td>
+<script>
+	$(document).ready(function() {
+		$('#dev_edit_<? echo $equipId;?>').click( function() {
+			edit_dialog(<? echo $equipId.",".$group.",".$gNum.",'".$name."',".$open.",".$type; ?>);
+		}); 
+	});
+</script>
+
         </tr>  
+
 <?
    }
 ?>              
@@ -131,9 +162,8 @@
   <b>Bluetooth Number:</b><br>
   <input type="text" id="bluetext" placeholder="input bluetooth number">
   <button id="add_blue" >add</button>
-  <button id="dele_blue" >delete selected bluetooth</button>
-  <br><br>
-  <ol>
+  <br><br><br><br>
+  <ul>
 <?
 
   $equipSQL = "SELECT * FROM `btDevice`";
@@ -142,11 +172,20 @@
 
     $btId = $equipResult['id'];
     $MacAddress = $equipResult['MacAddress'];
-    echo "<li>".$MacAddress."<input type='checkbox' name='del' /></li>";
+    echo "<div class='bt_item'>".$btId.". ".$MacAddress."<button class='dele_blue' id='dele_".$btId."'>delete</button></div>";
 
-  } 
 ?>    
-  </ol>
+<script>
+	$(document).ready(function() {
+		$('#dele_<? echo $btId;?>').click( function() {
+			delete_bluetooth(<? echo $btId; ?>, "<? echo $MacAddress; ?>");
+		}); 
+	});
+</script>
+<?
+	}
+?>
+  </ul>
 </div>
 
 

@@ -46,7 +46,7 @@ div#classTable {
 
 	position: absolute;
 	top: 20%;
-	width: 60%;
+	width: 40%;
 	left: 2%;
 	font-size: 28px;
 }
@@ -76,7 +76,7 @@ div.item {
 
 div.idClass {
 
-	width: 60%;
+	width:60%;
 	position: relative;
 	text-align: left;
 

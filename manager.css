@@ -46,16 +46,16 @@ div#back:hover {
 
 div#equipTable {
 
-	position: absolute;
+	position: relative;
 	top: 22%;
 	left: 6%;
 }
 
 div#bluetooth_table{
 
-	position: absolute;
+	position: relative;
 	left: 6%;
-	top:85%;;
+	top: 50%;
 	width:260px;
 
 
@@ -77,11 +77,14 @@ div#bluetooth_table{
 }
 
 label, input { 
-	display:block; 
+	margin-top: 5px;
+}
+
+div.dia_item {
+	margin-bottom: 10px;
 }
 
 input.text { 
-	margin-bottom:12px;
  	width:95%; padding: .4em;
 }
 
@@ -138,16 +141,18 @@ div#users-contain table td, div#users-contain table th {
 
 }
 
-#dele_blue{
-	position: absolute;
-	bottom: -50px;
+li {
 
+	margin: 5px;
 
 }
 
+.dele_blue {
+
+	margin-left: 5px;
+
+}
 body { font-size: 62.5%; }
-label, input { display:block; }
-input.text { margin-bottom:12px; width:95%; padding: .4em; }
 fieldset { padding:0; border:0; margin-top:25px; }
 h2 { font-size: 1.2em; margin: .6em 0; }
 div#users-contain { width: 800px; margin: 20px 0; }

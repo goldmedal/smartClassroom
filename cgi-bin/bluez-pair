@@ -1,9 +1,9 @@
 #!/usr/bin/python
-print "Content-Type: text/html"
+print "Content-Type: application/json"
 print
 
 import gobject
-
+import time
 import MySQLdb
 import cgi, cgitb
 import sys
@@ -11,12 +11,13 @@ import dbus
 import dbus.service
 import dbus.mainloop.glib
 from optparse import OptionParser
-
+import json
 form = cgi.FieldStorage()
 devName = "hci0"
 macAddress = form.getvalue('mac')
+#macAddress = "98:D3:31:B4:09:A9"
 pinCode = form.getvalue('pin')
-
+#pinCode = "1234"
 
 class Rejected(dbus.DBusException):
 	_dbus_error_name = "org.bluez.Error.Rejected"
@@ -30,7 +31,7 @@ class Agent(dbus.service.Object):
 	@dbus.service.method("org.bluez.Agent",
 					in_signature="", out_signature="")
 	def Release(self):
-		print "Release"
+#		print "Release"
 		if self.exit_on_release:
 			mainloop.quit()
 
@@ -46,14 +47,13 @@ class Agent(dbus.service.Object):
 	@dbus.service.method("org.bluez.Agent",
 					in_signature="o", out_signature="s")
 	def RequestPinCode(self, device):
-		print "RequestPinCode (%s)" % (device)
-		print "111"
+#		print "RequestPinCode (%s)" % (device)
 		return pinCode
 
 	@dbus.service.method("org.bluez.Agent",
 					in_signature="o", out_signature="u")
 	def RequestPasskey(self, device):
-		print "RequestPasskey (%s)" % (device)
+#		print "RequestPasskey (%s)" % (device)
 		passkey = raw_input("Enter passkey: ")
 		return dbus.UInt32(passkey)
 
@@ -65,7 +65,7 @@ class Agent(dbus.service.Object):
 	@dbus.service.method("org.bluez.Agent",
 					in_signature="ou", out_signature="")
 	def RequestConfirmation(self, device, passkey):
-		print "RequestConfirmation (%s, %06d)" % (device, passkey)
+#		print "RequestConfirmation (%s, %06d)" % (device, passkey)
 		confirm = raw_input("Confirm passkey (yes/no): ")
 		if (confirm == "yes"):
 			return
@@ -74,7 +74,7 @@ class Agent(dbus.service.Object):
 	@dbus.service.method("org.bluez.Agent",
 					in_signature="s", out_signature="")
 	def ConfirmModeChange(self, mode):
-		print "ConfirmModeChange (%s)" % (mode)
+#		print "ConfirmModeChange (%s)" % (mode)
 		authorize = raw_input("Authorize mode change (yes/no): ")
 		if (authorize == "yes"):
 			return
@@ -87,26 +87,26 @@ class Agent(dbus.service.Object):
 
 def create_device_reply(device):
 
-	print "222"
 	db = MySQLdb.connect(host="localhost", user="root", passwd="1234", db="smart_classroom")
 	cursor = db.cursor()
 
 	sql = "INSERT INTO `btDevice`(MacAddress) VALUES('" + macAddress + "')"
 	cursor.execute(sql)	
+	last_id = cursor.lastrowid
 	db.commit()
-
-	print "success"
+	print json.dumps({'result':'1', 'last_id':last_id})
 	mainloop.quit()
 
 def create_device_error(error):
-	print "fails"
+	print "fails: %s" % (error)
+
 	mainloop.quit()
 
 if __name__ == '__main__':
+
 	dbus.mainloop.glib.DBusGMainLoop(set_as_default=True)
 
-#	bus = dbus.SystemBus()
-	bus = dbus.SessionBus()
+	bus = dbus.SystemBus()
 	manager = dbus.Interface(bus.get_object("org.bluez", "/"),
 							"org.bluez.Manager")
 
@@ -118,21 +118,16 @@ if __name__ == '__main__':
 	(options, args) = parser.parse_args()
 	if options.capability:
 		capability  = options.capability
-
 	# args[0] is dev name
 	if devName:
-		print devName
 		path = manager.FindAdapter(devName)
-		print "111"
 	else:
-		print "33"
 		path = manager.DefaultAdapter()
+#	path = "/org/bluez/2323/hci0"
 	adapter = dbus.Interface(bus.get_object("org.bluez", path),
 							"org.bluez.Adapter")
-
 	path = "/test/agent"
 	agent = Agent(bus, path)
-
 	mainloop = gobject.MainLoop()
 
 #	if len(args) > 1:
@@ -156,8 +151,7 @@ if __name__ == '__main__':
 					error_handler=create_device_error)
 	else:
 		adapter.RegisterAgent(path, capability)
-		print "Agent registered"
-
+#		print "Agent registered"
 
 
 	mainloop.run()
