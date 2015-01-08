@@ -28,4 +28,3 @@ sock = bluetooth.BluetoothSocket ( bluetooth.RFCOMM )
 sock.connect ((bd_addr, port))
 sock.send("111111")
 sock.close
-
